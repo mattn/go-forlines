@@ -6,14 +6,14 @@ import (
 	"io"
 )
 
-func MustForLines(r io.Reader, f func(string) bool) {
+func MustForLines(r io.Reader, f func(string) error) {
 	err := ForLines(r, f)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func ForLines(r io.Reader, f func(string) bool) error {
+func ForLines(r io.Reader, f func(string) error) error {
 	br := bufio.NewReader(r)
 	var buf bytes.Buffer
 	for {
@@ -28,8 +28,9 @@ func ForLines(r io.Reader, f func(string) bool) error {
 			return err
 		}
 		if !isPrefix {
-			if !f(buf.String()) {
-				return nil
+			err = f(buf.String())
+			if err != nil {
+				return err
 			}
 			buf.Reset()
 		}

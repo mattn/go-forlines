@@ -22,9 +22,9 @@ func TestLinesWithError(t *testing.T) {
 	}
 	got := []string{}
 
-	err = ForLines(f, func(line string) bool {
+	err = ForLines(f, func(line string) error {
 		got = append(got, line)
-		return true
+		return nil
 	})
 	if err != nil {
 		t.Fatal(err)
