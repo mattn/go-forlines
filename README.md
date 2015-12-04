@@ -24,6 +24,23 @@ func main() {
 }
 ```
 
+```go
+package main
+
+import (
+	"os"
+
+	. "github.com/mattn/go-forlines"
+)
+
+func main() {
+	MustForLines(os.Stdin, func(line string) bool {
+		do_something_with(line)
+		return true
+	})
+}
+```
+
 ## License
 
 MIT
