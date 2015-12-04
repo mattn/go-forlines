@@ -14,9 +14,8 @@ import (
 )
 
 func main() {
-	err := ForLines(os.Stdin, func(line string) bool {
-		do_something_with(line)
-		return true
+	err := ForLines(os.Stdin, func(line string) error {
+		return do_something_with(line)
 	})
 	if err != nil {
 		panic(err)
@@ -34,10 +33,23 @@ import (
 )
 
 func main() {
-	MustForLines(os.Stdin, func(line string) bool {
-		do_something_with(line)
-		return true
+	MustForLines(os.Stdin, func(line string) error {
+		return do_something_with(line)
 	})
+}
+```
+
+```go
+package main
+
+import (
+	"os"
+
+	. "github.com/mattn/go-forlines"
+)
+
+func main() {
+	MustForLines(os.Stdin, do_something_with(line))
 }
 ```
 
