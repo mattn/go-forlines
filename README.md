@@ -10,11 +10,11 @@ package main
 import (
 	"os"
 
-	. "github.com/mattn/go-forlines"
+	"github.com/mattn/go-forlines"
 )
 
 func main() {
-	err := ForLines(os.Stdin, func(line string) error {
+	err := forlines.Do(os.Stdin, func(line string) error {
 		return do_something_with(line)
 	})
 	if err != nil {
@@ -29,11 +29,11 @@ package main
 import (
 	"os"
 
-	. "github.com/mattn/go-forlines"
+	"github.com/mattn/go-forlines"
 )
 
 func main() {
-	MustForLines(os.Stdin, func(line string) error {
+	forlines.Must(os.Stdin, func(line string) error {
 		return do_something_with(line)
 	})
 }
@@ -45,11 +45,11 @@ package main
 import (
 	"os"
 
-	. "github.com/mattn/go-forlines"
+	"github.com/mattn/go-forlines"
 )
 
 func main() {
-	MustForLines(os.Stdin, do_something_with(line))
+	forlines.Must(os.Stdin, do_something_with(line))
 }
 ```
 

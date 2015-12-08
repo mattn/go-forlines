@@ -22,7 +22,7 @@ func TestLinesWithError(t *testing.T) {
 	}
 	got := []string{}
 
-	err = ForLines(f, func(line string) error {
+	err = Do(f, func(line string) error {
 		got = append(got, line)
 		return nil
 	})

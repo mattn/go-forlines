@@ -6,14 +6,14 @@ import (
 	"io"
 )
 
-func MustForLines(r io.Reader, f func(string) error) {
-	err := ForLines(r, f)
+func Must(r io.Reader, f func(string) error) {
+	err := Do(r, f)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func ForLines(r io.Reader, f func(string) error) error {
+func Do(r io.Reader, f func(string) error) error {
 	br := bufio.NewReader(r)
 	var buf bytes.Buffer
 	for {
